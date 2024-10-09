@@ -7,40 +7,47 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains #
 # Third-party import should be followed after standard imports
 from selenium.webdriver.common.keys import Keys 
-# Standard libraries like time should be imported first followed by third-party imports and followed by helper \
+# Standard libraries like time should be imported first followed by \
+# third-party imports and followed by helper \
 # function file import from common workflow directory
 import time 
 
 #class name should be based on feature \
 # The class setup method is missing \
 # The test setup method is missing \
-# The test case metadata is missing metadata shows the feat number to which the \
-# test case belongs and much other information including the test steps \
-# Many functionalities are being tested in a single method which can be split into various other methods.
+# The test case metadata is missing metadata shows the feat number \
+# to which the test case belongs and much other information including the\
+# test steps, Many functionalities are being tested in a single method \
+# which can be split into various other methods.
 class Testcase101: 
-    # method name should be descriptive and should be based on what feature this test case will test\
-    # like "def test_validate_ticket_creation(self)" \
+    # method name should be descriptive and should be based on what feature \
+    # this test case will test like "def test_validate_ticket_creation(self)" \
     # should be declared in the class setup.
     def main(self): 
         driver = webdriver.Firefox(executable_path="C:\\Users\\Johny\\Downloads\\geckodriver-v0.33.0-win64\\geckodriver.exe")
         driver.get("https://interview.supporthive.com/staff/")
         driver.implicitly_wait(30) # webdriverwait should be used to prevent flakiness
         driver.maximize_window()
-         # helper function should be used to get the element and avoid using a hardcoded username instead get it from some config file 
+         # helper function should be used to get the element and avoid using a \
+        # hardcoded username instead get it from some config file 
         driver.find_element(By.ID, "id_username").send_keys("Agent")
-        # avoid using hardcoded passwords instead get it from some config file or use environment variables.
+        # avoid using hardcoded passwords instead get it from some config file or \
+        # use environment variables.
         driver.find_element(By.ID, "id_password").send_keys("Agent@123")
-        # helper function should be used to get the element and use the "data-test" attribute to avoid flakiness upon some changes in the product 
+        # helper function should be used to get the element and use the "data-test" \
+        # attribute to avoid flakiness upon some changes in the product 
         driver.find_element(By.ID, "btn-submit").click() 
         tickets = driver.find_element(By.ID, "ember29")
         action = ActionChains(driver) # object should be created in class setup 
         action.move_to_element(tickets).perform()
-        # helper file/method should be used to get elements by id, by.xpath, by data-test(data-test is one of the best locators)
+        # helper file/method should be used to get elements by id, by.xpath, by \ 
+        # data-test(data-test is one of the best locators)
         statuses = driver.find_element(By.LINK_TEXT, "Statuses") 
         statuses.click()
-        driver.find_element(By.XPATH, "/html/body/div[3]/div/section/section/div/header/button").click() # click() should not be used \
+        # click() should not be used \
         # directly first get the object in variable \
         # check if it is visible and clickable post that click the button
+        driver.find_element(By.XPATH, "/html/body/div[3]/div/section/section/div/header/button").click() 
         # proper steps should be displayed by logging(printing the steps)\
         driver.find_element(By.TAG_NAME, "input").send_keys("Issue Created")
         # at various steps to ease the debugging.
@@ -93,7 +100,8 @@ class Testcase101:
         priorities2 = driver.find_element(By.LINK_TEXT, "Priorities")
         # check if it is visible and clickable, post that click the button
         priorities2.click()
-        # inconsistent/mix wait strategy,avoid using inconsistent methods throughout the code use only one type of wait/sleep . 
+        # inconsistent/mix wait strategy,avoid using inconsistent methods throughout \
+        # the code use only one type of wait/sleep . 
         driver.implicitly_wait(20) 
         #  use relative XPath or other selectors its too long for readability
         driver.find_element(By.XPATH, "/html[1]/body[1]/div[3]/div[1]/section[1]/section[1]/div[1]/div[1]/section[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr[9]/td[2]").click()
@@ -111,7 +119,8 @@ class PagesforAutomationAssignment:
         driver.get("https://www.happyfox.com")
 
         loginPage = LoginPage(driver)
-        loginPage.login("username", "password") # Avoid hardcoding credentials,use environment variables or config files.
+        loginPage.login("username", "password") # Avoid hardcoding credentials,use environment \ 
+        # variables or config files.
 
 
         homePage = HomePage(driver)
@@ -137,11 +146,14 @@ class LoginPage(BasePage):
 class HomePage(BasePage):
 
     def verifyHomePage(self):
-        if self.driver.current_url != "https://www.happyfox.com/home": # instead assert can be used 
-            raise Exception("Not on the home page") # create a custom exception using assert 
+        # instead assert can be used 
+        if self.driver.current_url != "https://www.happyfox.com/home": 
+            # create a custom exception using assert 
+            raise Exception("Not on the home page") 
     # method not used 
     def navigateToProfile(self): 
-        # error handling is not done, check if the element is visible and clickable, post that only click the element.
+        # error handling is not done, check if the element is visible and clickable, \
+        # post that only click the element.
         self.driver.find_element(By.ID, "profileLink").click() 
         
 
