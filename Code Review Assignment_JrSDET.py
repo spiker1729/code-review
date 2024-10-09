@@ -160,7 +160,7 @@ class TablePage(BasePage):
             rowText = row.text
             print("Row " + str(i) + " Text: " + rowText)
 
-'' overall comment 
+''' overall comment 
 Make use of code reusability and  all common entities(if required) to be tested, create all at once 
 in the class setup, try to minimize the no of lines by using helper files to retrieve elements,
 use abstraction by using common workflow helpers, keep proper logging of every step to ease 
